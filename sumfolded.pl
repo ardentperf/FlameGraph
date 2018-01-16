@@ -76,7 +76,7 @@ usage() if @ARGV < 2;
 our($opt_h, $opt_n, $opt_s);
 getopts('ns') or usage();
 usage() if $opt_h;
-$normalize = 1 if defined $opt_n;
+#$normalize = 1 if defined $opt_n;
 $striphex = 1 if defined $opt_s;
 
 my ($total1, $total2) = (0, 0);
@@ -111,5 +111,5 @@ foreach my $stack (keys %Folded) {
 	if ($normalize && $total1 != $total2) {
 		$Folded{$stack}{1} = int($Folded{$stack}{1} * $total2 / $total1);
 	}
-	print "$stack $Folded{$stack}{1} $Folded{$stack}{2}\n";
+	print "$stack " . int($Folded{$stack}{1} + $Folded{$stack}{2}) . "\n";
 }
